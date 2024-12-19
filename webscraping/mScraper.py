@@ -15,7 +15,7 @@ def get_data(start_url):
     months = body[0].findAll('a', href = True)
     for i in months:
         if i.text.lower() in month_list:
-            i = (i.text, f'{base_url}{i["hhref"]}')
+            i = (i.text, f'{base_url}{i["href"]}')
             month_link_array.append(i)
     page_tocheck_dict = {'Month': [], 'Url': [], 'Index': []}
     box_link_array = []
@@ -137,3 +137,7 @@ def get_data(start_url):
 
     stat_df.to_csv(f'Season({season}).csv', line_terminator='\n', index=False)
     print(f'Saved game stats for the {season} season to a csv')
+
+if __name__ == '__main__':
+    start_link = 'https://www.basketball-reference.com/leagues/NBA_2023_games.html'
+    get_data(start_link)
